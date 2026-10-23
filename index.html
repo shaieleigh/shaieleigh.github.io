@@ -1,62 +1,300 @@
-<!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Aerial by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta property="og:locale" content="en_US" />
-  	<meta property="og:type" content="portfolio" />
-  	<meta property="og:title" content="Shannon Briggs' Portfolio" />
-  	<meta property="og:description" content="Shannon Briggs' Portfolio gives access to email, Github, 4 projects and more" />
-  	<meta property="og:url" content="https://shaieleigh.github.io/" />
-  	<meta property="og:site_name" content="shaieleigh.github.io" />
-  	<meta property="og:image" content="../assets/css/images/portfolioLinkPreview.png" name="image" />
-  	<!-- <meta property="og:image:secure_url" content="" /> -->
-  	<meta property="og:image:width" content="1500" />
-  	<meta property="og:image:height" content="1000" />
-  	<meta property="og:image:alt" content="Shannon Briggs' Portfolio" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shannon Briggs · Software Engineer</title>
+  <meta name="description" content="Shannon Briggs: full-stack software engineer working in cloud, DevOps and agentic AI. Projects, experience and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shannon Briggs · Software Engineer" />
+  <meta property="og:description" content="Full-stack software engineer: cloud, DevOps and agentic AI. Five years delivering production systems at Accenture Federal Services." />
+  <meta property="og:url" content="https://shaieleigh.github.io/" />
+  <meta property="og:image" content="https://shaieleigh.github.io/assets/og-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Layout: one centered column; hero, then work, experience, skills. Navy matches the resume. */
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --ink: #14202e;
+      --muted: #52606f;
+      --line: #dde3ea;
+      --accent: #1f4e79;
+      --accent-soft: #e6eef6;
+      --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f151c;
+        --surface: #161e27;
+        --ink: #e6ebf1;
+        --muted: #9aa8b7;
+        --line: #26323f;
+        --accent: #7fb2e5;
+        --accent-soft: #1a2a3b;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.6 var(--sans);
+    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
 
-				<!-- Header -->
-					<header id="header">
-						<h1>Shannon Briggs</h1>
-						<p>Software Engineer &nbsp;&bull;&nbsp; Bartender &nbsp;&bull;&nbsp; DJ &nbsp;&bull;&nbsp; Artist</p>
-						<nav>
-							<ul>
-								<li><a href="https://www.linkedin.com/in/shannon-briggs-0303/?originalSubdomain=ke" class="icon brands fab fa-linkedin" title='My Linkedin'><span class="label">Linkedin</span></a></li>
-								<li><a href="https://github.com/shaieleigh" class="icon brands fa-github" title='My Github'><span class="label">Github</span></a></li>
-								<li><a href="https://bestlifeliving.herokuapp.com/" class="brands fas fa-cubes" title="My Full Stack Project 'Best Life Living'" ><span class="label">Best Life Living</span></a></li>
-								<li><a href="https://fumblrcloneapp.herokuapp.com/login" class="brands fas fa-football-ball" title="My Full Stack Project Tumblr clone"><span class="label">Fumblr</span></a></li>
-								<li><a href=" https://snack-overflow-app.herokuapp.com/" class="brands fas fa-hamburger" title="My Full Stack Project Stack-Overflow clone"><span class="label">Snack-Overflow</span></a></li>
-								<li><a href="https://covidwithstrangers.herokuapp.com" class="brands far fa-surprise" title="My Full Stack Project Tea with Strangers clone"><span class="label">Covid with Strangers</span></a></li>
-								<li><a href="mailto: shaieleigh1@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-						</nav>
-					</header>
+    /* Hero */
+    header.hero { padding-block: 72px 48px; border-bottom: 1px solid var(--line); }
+    .eyebrow {
+      font: 500 13px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    h1 { font-size: clamp(36px, 6vw, 52px); line-height: 1.1; margin: 0 0 12px; letter-spacing: -.01em; text-wrap: balance; }
+    .role { font-size: clamp(18px, 2.4vw, 22px); color: var(--accent); font-weight: 600; margin: 0 0 20px; }
+    .lede { max-width: 62ch; color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 6px;
+      border: 1px solid var(--line); background: var(--surface);
+      color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15px;
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .btn:hover { border-color: var(--accent); }
+    .btn svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 28px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; }
+    .facts li::before { content: "▸ "; color: var(--accent); }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-					</footer>
+    /* Sections */
+    section { padding-block: 56px; border-bottom: 1px solid var(--line); }
+    h2 { font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 24px; }
 
-			</div>
-		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+    /* Work cards */
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+      padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0;
+    }
+    .card.feature { grid-column: 1 / -1; }
+    .org { font: 500 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+    .card h3 { margin: 0; font-size: 20px; line-height: 1.3; }
+    .card p { margin: 0; color: var(--muted); }
+    .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .card li + li { margin-top: 4px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px; }
+    .tags span { font: 12px/1 var(--mono); padding: 5px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--ink); }
+    .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; font-weight: 500; }
+    .note { font-size: 13px; color: var(--muted); font-style: italic; }
+
+    /* Experience */
+    .timeline { display: grid; gap: 24px; }
+    .job { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; }
+    .when { font: 13px/1.6 var(--mono); color: var(--muted); padding-top: 2px; }
+    .job h3 { margin: 0 0 4px; font-size: 17px; }
+    .job p { margin: 0; color: var(--muted); }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; }
+    .skills h3 { margin: 0 0 6px; font-size: 15px; }
+    .skills p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* Earlier projects */
+    .earlier { color: var(--muted); font-size: 15px; margin: 0; }
+    .earlier a { font-weight: 500; }
+
+    footer { padding-block: 32px 48px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+    @media (max-width: 720px) {
+      header.hero { padding-block: 48px 36px; }
+      section { padding-block: 40px; }
+      .grid, .skills { grid-template-columns: minmax(0, 1fr); }
+      .job { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .btn, .card { transition: border-color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Shannon Briggs</h1>
+      <p class="role">Full-Stack Software Engineer · Cloud, DevOps &amp; Agentic AI</p>
+      <p class="lede">I build and run production systems in React/TypeScript, Python and Java/Spring Boot on AWS and Azure, with Docker, Kubernetes and CI/CD. Five years at Accenture Federal Services across six programs, from new MVP builds to legacy modernization. Lately I build multi-tool AI agent workflows with the Model Context Protocol (MCP).</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:shannon.l.briggs@outlook.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20v14H2V5Zm2 2v.4l8 5.3 8-5.3V7H4Zm16 2.8-8 5.3-8-5.3V17h16V9.8Z"/></svg>
+          Email me
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/shannon-briggs-0303/">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm7 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4V9.5Z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://github.com/shaieleigh">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <ul class="facts">
+        <li>Williamstown, NJ · open to remote</li>
+        <li>Active Top Secret clearance</li>
+        <li>Linux daily (Ubuntu, WSL)</li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section id="work">
+      <div class="wrap">
+        <h2>Selected work</h2>
+        <div class="grid">
+
+          <article class="card feature">
+            <span class="org">Accenture · 2021–2024</span>
+            <h3>NextGen Mission Analytics (NMA)</h3>
+            <p>An AI platform that tracks and predicts emerging global events by pulling news and social media from more than 100,000 sources into one common operating picture. Built at Accenture Federal Services and now also offered to commercial clients.</p>
+            <ul>
+              <li>Kept services running in Kubernetes: diagnosed pod and message-broker bottlenecks and handled service restarts.</li>
+              <li>Added a “Run Again” feature to the summarization tool so analysts can regenerate article summaries over custom date ranges and parameters.</li>
+              <li>Built an admin interface for the web-data ingestion service so users can filter media sources by project and subject.</li>
+              <li><strong>NMA UI Refresh:</strong> rebuilt the interface in React, TypeScript, React Router and MobX, and moved front-end tests from Jest to Vitest.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.accenture.com/us-en/services/us-federal-government/applied-intelligence-federal">Accenture: Applied Intelligence (NMA overview)</a>
+              <a href="https://www.accenture.com/en-us/industries/accenture-federal-services/commercial-technologies">Accenture: Commercial Technologies</a>
+            </div>
+            <div class="tags"><span>Kubernetes</span><span>Docker</span><span>React</span><span>TypeScript</span><span>MobX</span><span>Vitest</span><span>JavaScript</span></div>
+          </article>
+
+          <article class="card">
+            <span class="org">Independent · 2026</span>
+            <h3>Agentic AI Automation System</h3>
+            <p>A personal automation system where custom AI agent skills orchestrate MCP connectors to triage tasks and build a prioritized daily brief.</p>
+            <ul>
+              <li>Registered an Entra ID app and used OAuth with the Microsoft Graph API to export 130+ tasks with exact recurrence rules.</li>
+              <li>Scheduled the pipeline with Windows Task Scheduler and PowerShell, with error logging.</li>
+              <li>Automated visual QA with headless Chromium and Playwright at desktop and mobile widths.</li>
+            </ul>
+            <div class="tags"><span>Anthropic Claude</span><span>MCP</span><span>Microsoft Graph</span><span>Python</span><span>Playwright</span></div>
+          </article>
+
+          <article class="card">
+            <span class="org">Independent · 2026</span>
+            <h3>Scattered Spectrum Studio: website, app &amp; CI/CD</h3>
+            <p>A website and Android app for a handmade art business, built from one repo so content updates need no app release.</p>
+            <ul>
+              <li>React/TypeScript site on GitHub Pages; Expo (React Native) app reads products and events from the published site.</li>
+              <li>Password-protected FastAPI admin tool that resizes photos and publishes data to the site in one click.</li>
+              <li>GitHub Actions builds and deploys the site on every push to main.</li>
+            </ul>
+            <div class="tags"><span>React</span><span>Expo</span><span>FastAPI</span><span>PostgreSQL</span><span>GitHub Actions</span></div>
+          </article>
+
+          <article class="card">
+            <span class="org">Accenture Federal Services · 2024–2025</span>
+            <h3>Cloud Analytics &amp; Information-Sharing Platform</h3>
+            <p>Sole engineer on an AWS-hosted analytics platform.</p>
+            <ul>
+              <li>Configured AWS networking and managed database services to connect the platform.</li>
+              <li>Built monitoring that reduced downtime, and identity-management services for secure onboarding.</li>
+            </ul>
+            <div class="tags"><span>AWS</span><span>Java</span><span>Spring Boot</span><span>IDaaS</span></div>
+          </article>
+
+          <article class="card">
+            <span class="org">Accenture Federal Services · 2025–present</span>
+            <h3>Citizen-Services Application Modernization</h3>
+            <p>Modernizing large legacy applications to current standards.</p>
+            <ul>
+              <li>Built a document-scanning feature that reads identity documents during application intake.</li>
+              <li>Speeding up Jenkins and SonarQube build and release pipelines.</li>
+            </ul>
+            <div class="tags"><span>Java</span><span>Spring Boot</span><span>Oracle</span><span>React</span><span>Jenkins</span></div>
+          </article>
+
+        </div>
+        <p class="note" style="margin-top:20px">Client names and details for federal programs are withheld.</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="job">
+            <div class="when">2021 – present</div>
+            <div>
+              <h3>Full-Stack Software Engineer · Accenture Federal Services (formerly Novetta)</h3>
+              <p>Client delivery across six programs; started two new project builds from scratch, including an MVP I led end to end from data architecture to front end.</p>
+            </div>
+          </div>
+          <div class="job">
+            <div class="when">2020</div>
+            <div>
+              <h3>Full-Stack Software Engineering · App Academy</h3>
+              <p>1,000-hour immersive program (under 3% admission rate) focused on pair programming and code quality.</p>
+            </div>
+          </div>
+          <div class="job">
+            <div class="when">2017 – 2020</div>
+            <div>
+              <h3>Bar Manager · Legends Hospitality</h3>
+              <p>Led a team in a high-volume venue; ran inventory, opening and closing, and cash operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div><h3>AI &amp; agents</h3><p>Model Context Protocol (MCP), Anthropic Claude agent skills, LLM tool orchestration, AI-assisted development</p></div>
+          <div><h3>Cloud &amp; DevOps</h3><p>AWS, Azure, Azure DevOps, Docker, Kubernetes, Helm, GitHub Actions, Jenkins, SonarQube, Grafana</p></div>
+          <div><h3>Linux &amp; operations</h3><p>Ubuntu, WSL, pod troubleshooting, message brokers, AWS networking, monitoring</p></div>
+          <div><h3>Frontend</h3><p>React, TypeScript, Redux, MobX, TanStack Query, React Router, Vite, Material UI</p></div>
+          <div><h3>Backend &amp; data</h3><p>Python, Java, Spring Boot, FastAPI, Flask, Node.js, GraphQL, REST, PostgreSQL, Oracle</p></div>
+          <div><h3>Testing &amp; delivery</h3><p>Vitest, Jest, Playwright, Postman, Git, Jira, Scrum</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="earlier">
+      <div class="wrap">
+        <h2>Earlier projects</h2>
+        <p class="earlier">App Academy team and solo projects (2020), source code on GitHub:
+          <a href="https://github.com/shaieleigh/bestLifeLiving">Best Life Living</a> ·
+          <a href="https://github.com/shaieleigh/stackOverFlow">Snack-Overflow</a> ·
+          <a href="https://github.com/shaieleigh/fumblr">Fumblr</a> ·
+          <a href="https://github.com/shaieleigh/covidWithStrangers">Covid with Strangers</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© 2026 Shannon Briggs</span>
+    <span><a href="mailto:shannon.l.briggs@outlook.com">shannon.l.briggs@outlook.com</a></span>
+  </footer>
+</body>
 </html>
