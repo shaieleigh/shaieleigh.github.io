@@ -16,9 +16,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var t = "dark";
+      try { t = localStorage.getItem("theme") || "dark"; } catch (e) {}
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
   <style>
     /* Layout: one centered column; hero, then work, experience, skills. Navy matches the resume. */
     :root {
+      --bg: #0f151c;
+      --surface: #161e27;
+      --ink: #e6ebf1;
+      --muted: #9aa8b7;
+      --line: #26323f;
+      --accent: #7fb2e5;
+      --accent-soft: #1a2a3b;
+      --acn: #a100ff;
+      --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+      color-scheme: dark;
+    }
+    :root[data-theme="light"] {
       --bg: #f7f8fa;
       --surface: #ffffff;
       --ink: #14202e;
@@ -26,20 +46,7 @@
       --line: #dde3ea;
       --accent: #1f4e79;
       --accent-soft: #e6eef6;
-      --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
-      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f151c;
-        --surface: #161e27;
-        --ink: #e6ebf1;
-        --muted: #9aa8b7;
-        --line: #26323f;
-        --accent: #7fb2e5;
-        --accent-soft: #1a2a3b;
-        color-scheme: dark;
-      }
+      color-scheme: light;
     }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
@@ -120,6 +127,32 @@
     .earlier { color: var(--muted); font-size: 15px; margin: 0; }
     .earlier a { font-weight: 500; }
 
+    /* Top bar with theme toggle */
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 0 0 16px; }
+    .topbar .eyebrow { margin: 0; }
+    .theme-toggle {
+      display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+      padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+      background: var(--surface); color: var(--ink); font: 500 13px/1 var(--sans);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .theme-toggle svg { width: 15px; height: 15px; fill: currentColor; }
+    .theme-toggle .sun { display: none; }
+    :root[data-theme="light"] .theme-toggle .sun { display: block; }
+    :root[data-theme="light"] .theme-toggle .moon { display: none; }
+
+    /* Project badges */
+    .org { display: inline-flex; align-items: center; gap: 10px; }
+    .badge { width: 26px; height: 26px; border-radius: 50%; flex: none; display: inline-grid; place-items: center; }
+    .badge.acn { background: var(--acn); }
+    .badge.acn svg { width: 14px; height: 14px; fill: #fff; }
+    .badge.indie {
+      background: conic-gradient(#ff4d4d, #ffa64d, #ffe14d, #5ee07a, #4dc3ff, #7a6bff, #d36bff, #ff4d4d);
+      position: relative;
+    }
+    .badge.indie::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: #0b0b0b; }
+
     footer { padding-block: 32px 48px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 
     @media (max-width: 720px) {
@@ -136,7 +169,14 @@
 <body>
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">Portfolio</p>
+      <div class="topbar">
+        <p class="eyebrow">Portfolio</p>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch color theme">
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A9 9 0 0 1 9.5 3a9 9 0 1 0 11.5 11.5Z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-5 1.5 3h-3L12 2Zm0 20-1.5-3h3L12 22ZM2 12l3-1.5v3L2 12Zm20 0-3 1.5v-3l3 1.5ZM4.9 4.9l3.2 1.1-2.1 2.1-1.1-3.2Zm14.2 14.2-3.2-1.1 2.1-2.1 1.1 3.2Zm0-14.2-1.1 3.2-2.1-2.1 3.2-1.1ZM4.9 19.1l1.1-3.2 2.1 2.1-3.2 1.1Z"/></svg>
+          <span id="theme-label">Light mode</span>
+        </button>
+      </div>
       <h1>Shannon Briggs</h1>
       <p class="role">Full-Stack Software Engineer · Cloud, DevOps &amp; Agentic AI</p>
       <p class="lede">I build and run production systems in React/TypeScript, Python and Java/Spring Boot on AWS and Azure, with Docker, Kubernetes and CI/CD. Five years at Accenture Federal Services across six programs, from new MVP builds to legacy modernization. Lately I build multi-tool AI agent workflows with the Model Context Protocol (MCP).</p>
@@ -169,7 +209,7 @@
         <div class="grid">
 
           <article class="card feature">
-            <span class="org">Accenture · 2021–2024</span>
+            <span class="org"><span class="badge acn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h5a2 2 0 0 1 2 2v4H2V6a2 2 0 0 1 2-2h5Zm2 0h2V4h-2Zm11 8v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6h8v2h4v-2h8Z"/></svg></span>Accenture · 2021–2024</span>
             <h3>NextGen Mission Analytics (NMA)</h3>
             <p>An AI platform that tracks and predicts emerging global events by pulling news and social media from more than 100,000 sources into one common operating picture. Built at Accenture Federal Services and now also offered to commercial clients.</p>
             <ul>
@@ -179,6 +219,7 @@
               <li><strong>NMA UI Refresh:</strong> rebuilt the interface in React, TypeScript, React Router and MobX, and moved front-end tests from Jest to Vitest.</li>
             </ul>
             <div class="links">
+              <a href="https://www.accenture.com/en/blogs/federal-viewpoints/generative-ai-azure">Accenture blog: generative AI in production on NMA</a>
               <a href="https://www.accenture.com/us-en/services/us-federal-government/applied-intelligence-federal">Accenture: Applied Intelligence (NMA overview)</a>
               <a href="https://www.accenture.com/en-us/industries/accenture-federal-services/commercial-technologies">Accenture: Commercial Technologies</a>
             </div>
@@ -186,7 +227,7 @@
           </article>
 
           <article class="card">
-            <span class="org">Independent · 2026</span>
+            <span class="org"><span class="badge indie" aria-hidden="true"></span>Independent · 2026</span>
             <h3>Agentic AI Automation System</h3>
             <p>A personal automation system where custom AI agent skills orchestrate MCP connectors to triage tasks and build a prioritized daily brief.</p>
             <ul>
@@ -198,7 +239,7 @@
           </article>
 
           <article class="card">
-            <span class="org">Independent · 2026</span>
+            <span class="org"><span class="badge indie" aria-hidden="true"></span>Independent · 2026</span>
             <h3>Scattered Spectrum Studio: website, app &amp; CI/CD</h3>
             <p>A website and Android app for a handmade art business, built from one repo so content updates need no app release.</p>
             <ul>
@@ -210,7 +251,7 @@
           </article>
 
           <article class="card">
-            <span class="org">Accenture Federal Services · 2024–2025</span>
+            <span class="org"><span class="badge acn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h5a2 2 0 0 1 2 2v4H2V6a2 2 0 0 1 2-2h5Zm2 0h2V4h-2Zm11 8v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6h8v2h4v-2h8Z"/></svg></span>Accenture Federal Services · 2024–2025</span>
             <h3>Cloud Analytics &amp; Information-Sharing Platform</h3>
             <p>Sole engineer on an AWS-hosted analytics platform.</p>
             <ul>
@@ -221,7 +262,7 @@
           </article>
 
           <article class="card">
-            <span class="org">Accenture Federal Services · 2025–present</span>
+            <span class="org"><span class="badge acn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h5a2 2 0 0 1 2 2v4H2V6a2 2 0 0 1 2-2h5Zm2 0h2V4h-2Zm11 8v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6h8v2h4v-2h8Z"/></svg></span>Accenture Federal Services · 2025–present</span>
             <h3>Citizen-Services Application Modernization</h3>
             <p>Modernizing large legacy applications to current standards.</p>
             <ul>
@@ -296,5 +337,23 @@
     <span>© 2026 Shannon Briggs</span>
     <span><a href="mailto:shannon.l.briggs@outlook.com">shannon.l.briggs@outlook.com</a></span>
   </footer>
+  <script>
+    (function () {
+      var btn = document.getElementById("theme-toggle");
+      var label = document.getElementById("theme-label");
+      function sync() {
+        var dark = document.documentElement.getAttribute("data-theme") !== "light";
+        label.textContent = dark ? "Light mode" : "Dark mode";
+        btn.setAttribute("aria-pressed", dark ? "false" : "true");
+      }
+      btn.addEventListener("click", function () {
+        var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        sync();
+      });
+      sync();
+    })();
+  </script>
 </body>
 </html>
