@@ -145,7 +145,7 @@
     /* Project badges */
     .org { display: inline-flex; align-items: center; gap: 10px; }
     .badge { width: 26px; height: 26px; border-radius: 50%; flex: none; display: inline-grid; place-items: center; }
-    .badge.acn { background: #000; overflow: hidden; }
+    .badge.acn { background: var(--surface); overflow: hidden; }
     .badge.acn img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .badge.indie {
       background: conic-gradient(#ff4d4d, #ffa64d, #ffe14d, #5ee07a, #4dc3ff, #7a6bff, #d36bff, #ff4d4d);
@@ -240,13 +240,16 @@
 
           <article class="card">
             <span class="org"><span class="badge indie" aria-hidden="true"></span>Independent · 2026</span>
-            <h3>Scattered Spectrum Studio: website, app &amp; CI/CD</h3>
+            <h3>Scattered Spectrum Studio (S3): website, app &amp; CI/CD</h3>
             <p>A website and Android app for a handmade art business, built from one repo so content updates need no app release.</p>
             <ul>
               <li>React/TypeScript site on GitHub Pages; Expo (React Native) app reads products and events from the published site.</li>
               <li>Password-protected FastAPI admin tool that resizes photos and publishes data to the site in one click.</li>
               <li>GitHub Actions builds and deploys the site on every push to main.</li>
             </ul>
+            <div class="links">
+              <a href="https://shaieleigh.github.io/scattered-spectrum-studio">Visit the S3 site and app</a>
+            </div>
             <div class="tags"><span>React</span><span>Expo</span><span>FastAPI</span><span>PostgreSQL</span><span>GitHub Actions</span></div>
           </article>
 
